@@ -1,21 +1,32 @@
-import { makeStyles } from "@material-ui/core/styles";
+import styled from "styled-components";
 
-export default makeStyles({
-  header: {
-    textAlign: "center",
-    "& h1": {
-      color: "#2c3e50",
-      margin: "5vh 0 0 0",
-      fontSize: "4rem",
-      fontWeight: "300",
-      "& span": {
-        fontWeight: "700"
-      }
-    },
-    "& h2": {
-      color: "#2c3e50",
-      fontSize: "1.15rem",
-      fontWeight: "300"
-    }
-  }
-});
+const Header = styled.div`
+  text-align: center;
+`;
+
+const H1 = styled.h1`
+  color: ${({ theme }) => theme.colors.primaryText};
+  margin: 5vh 0 0 0;
+  font-size: 4rem;
+  font-weight: 300;
+`;
+
+const Span = styled.span`
+  font-weight: 700;
+`;
+
+const H2 = styled.h2`
+  color: ${({ theme }) => theme.colors.primaryText};
+  font-size: 1.15rem;
+  font-weight: 300;
+`;
+
+const Button = styled.button`
+  padding: 1rem;
+  border-radius: 1px;
+  border: 2px solid ${({ theme }) => theme.colors.button};
+  font-size: 1rem;
+  background: ${({ theme }) => theme.colors.background};
+`;
+
+export { Header, H1, Span, H2, Button };
