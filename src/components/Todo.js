@@ -2,6 +2,13 @@ import React, { useContext } from "react";
 import { TodosContext } from "../contexts/todo.context";
 import { TOGGLE_TODO, REMOVE_TODO } from "../constants/actions";
 import useStyles from "../styles/TodoStyles";
+import styled from "styled-components";
+
+const StyledSpan = styled.span`
+  text-decoration: ${({ complete }) => (complete ? "line-through" : "")};
+  color: ${({ complete, theme }) =>
+    complete ? theme.colors.completeText : theme.colors.secondaryText};
+`;
 
 function Todo({ todo }) {
   const { dispatch } = useContext(TodosContext);
@@ -14,20 +21,15 @@ function Todo({ todo }) {
         dispatch({ type: TOGGLE_TODO, payload: id });
       }}
     >
-      <span
-        style={{
-          textDecoration: complete ? `line-through` : ``,
-          color: complete ? `#9aa1a5` : `#36454F`
-        }}
-      >
-        {task}
-      </span>
+      <StyledSpan complete={complete}>{task}</StyledSpan>
       <div className="icon">
-        <i className="fas fa-trash" 
-         onClick={ (e) => {
-          e.stopPropagation();
-          dispatch({type: REMOVE_TODO, payload: id})
-         }}/>
+        <i
+          className="fas fa-trash"
+          onClick={(e) => {
+            e.stopPropagation();
+            dispatch({ type: REMOVE_TODO, payload: id });
+          }}
+        />
       </div>
     </li>
   );

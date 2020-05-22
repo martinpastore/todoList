@@ -2,7 +2,7 @@ import { css } from "styled-components";
 
 export default css`
   html {
-    background: #fff;
+    background: ${({ theme }) => theme.colors.background};
   }
   body {
     margin: 0;
